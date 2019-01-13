@@ -56,6 +56,9 @@ export default {
           this.$axios.post("login", this.formData).then(res => {
             console.log(res);
             if (res.data.meta.status == 200) {
+                //将token存到sessionstorage
+                window.sessionStorage.setItem('token',res.data.data.token);
+                this.$router.push('/');
               //登录成功
               this.$message({
                 message: res.data.meta.msg,
